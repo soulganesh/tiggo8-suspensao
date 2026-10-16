@@ -3,7 +3,7 @@
 Dossiê de diagnóstico de uma vibração na suspensão que aparece por volta de 76 km/h.
 
 - **Página:** abra `index.html` (ou o endereço do GitHub Pages deste repositório).
-- **Dados:** `dados/` — 13 gravações de acelerômetro + GPS (Physics Toolbox, ≈100 leituras/s), de G01 a G13, com o conteúdo original do app.
+- **Dados:** `dados/` — 14 gravações de acelerômetro + GPS (Physics Toolbox, ≈100 leituras/s), de G01 a G14, com o conteúdo original do app.
 - **Gráficos:** `graficos/`
 - **Relatório:** `relatorio_vibracao.pdf`
 
