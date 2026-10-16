@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Quicada aos 76 km/h</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: caderno de ensaio de oficina — coluna única de leitura, faixas de seção com rótulo técnico à esquerda, dados em tabela mono. */
+:root{
+  --paper:#f3f4f2; --sheet:#ffffff; --ink:#1d2326; --muted:#5b666b; --rule:#d5dad8;
+  --signal:#c4560f; --signal-soft:#fbe9dc; --steel:#2f5f7a; --steel-soft:#e1ecf2; --ok:#2e7d4f;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#15191b; --sheet:#1d2326; --ink:#e7ebea; --muted:#9aa6aa; --rule:#333d41;
+  --signal:#f08a43; --signal-soft:#3a2617; --steel:#7fb3cf; --steel-soft:#1d3240; --ok:#6cc596; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#15191b; --sheet:#1d2326; --ink:#e7ebea; --muted:#9aa6aa; --rule:#333d41;
+  --signal:#f08a43; --signal-soft:#3a2617; --steel:#7fb3cf; --steel-soft:#1d3240; --ok:#6cc596; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;padding-block:40px 64px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.1;margin:0}
+h1{font-size:clamp(2.4rem,6vw,3.8rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.75rem;font-weight:600}
+h3{font-size:1.2rem;font-weight:600}
+p{margin:0;max-width:68ch}
+a{color:var(--steel)}
+:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* cabeçalho */
+header{display:flex;flex-direction:column;gap:18px;border-bottom:3px solid var(--ink);padding-bottom:28px}
+.speed{font-family:var(--f-display);font-weight:700;color:var(--signal)}
+.lede{font-size:1.15rem;max-width:62ch}
+.spec{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--f-mono);font-size:.82rem;color:var(--muted)}
+.spec b{color:var(--ink);font-weight:500}
+
+/* seção com rótulo lateral */
+section{display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px 32px}
+section>.side{display:flex;flex-direction:column;gap:6px;padding-top:6px;border-top:1px solid var(--rule)}
+section>.main{display:flex;flex-direction:column;gap:20px;min-width:0;padding-top:6px;border-top:1px solid var(--rule)}
+@media (max-width:760px){section{grid-template-columns:minmax(0,1fr);gap:10px}section>.main{border-top:0;padding-top:0}}
+
+/* números principais */
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.fig{background:var(--sheet);padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
+.fig .n{font-family:var(--f-display);font-size:2.3rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.fig .n.hot{color:var(--signal)} .fig .n.cool{color:var(--steel)}
+.fig p{font-size:.9rem;color:var(--muted)}
+
+.status{background:var(--signal-soft);border-left:4px solid var(--signal);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.status p{max-width:none}
+ul.clean{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px;max-width:70ch}
+
+/* linha do tempo */
+ol.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+ol.tl li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px dashed var(--rule)}
+ol.tl li:last-child{border-bottom:0}
+ol.tl .when{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);line-height:1.5}
+ol.tl .when b{display:block;color:var(--ink);font-weight:500}
+ol.tl h3{margin-bottom:4px}
+ol.tl .rec{font-family:var(--f-mono);font-size:.78rem;color:var(--steel)}
+@media (max-width:480px){ol.tl li{grid-template-columns:minmax(0,1fr);gap:4px}}
+
+/* gráficos */
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.gallery figure{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.gallery figure.wide{grid-column:1/-1}
+.plate{background:#fff;border:1px solid var(--rule);padding:8px}
+.plate img{display:block;width:100%;height:auto}
+figcaption{font-size:.9rem;color:var(--muted);max-width:none}
+figcaption b{color:var(--ink)}
+@media (max-width:760px){.gallery{grid-template-columns:minmax(0,1fr)}}
+
+/* tabela de posições */
+.tbl{overflow-x:auto;border:1px solid var(--rule);background:var(--sheet)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--paper)}
+td.num,th.num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.hot{color:var(--signal);font-weight:600}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:.7rem;padding:1px 7px;border-radius:3px;background:var(--steel-soft);color:var(--steel);white-space:nowrap}
+.tag.other{background:var(--signal-soft);color:var(--signal)}
+
+/* correções */
+.fix{display:flex;flex-direction:column;gap:14px}
+.fix div{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding-left:14px;border-left:2px solid var(--rule)}
+
+/* downloads */
+.dl{appearance:none;border:1px solid var(--steel);background:transparent;color:var(--steel);font:500 .78rem var(--f-mono);
+  padding:5px 10px;border-radius:3px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
+.dl:hover{background:var(--steel);color:var(--sheet)}
+.dl[data-state="busy"]{opacity:.6;cursor:progress}
+.dl[data-state="done"]{border-color:var(--ok);color:var(--ok)}
+.files-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+#dlnote{font-size:.85rem;color:var(--muted)}
+
+footer{border-top:3px solid var(--ink);padding-top:18px;font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+footer p{max-width:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+<header>
+  <span class="label">Dossiê de diagnóstico · vibração de suspensão</span>
+  <h1>Quicada aos <span class="speed">76</span> km/h</h1>
+  <p class="lede">Por volta de 76 km/h o carro dá uma quicada que se repete até parar, sentida na cabine inteira. A concessionária não conseguia reproduzir. Esta página reúne as 13 gravações com acelerômetro e GPS feitas entre 6 e 9 de outubro de 2026, o que cada uma mostrou e os arquivos originais.</p>
+  <div class="spec">
+    <span>Veículo <b>Tiggo 8 · tração dianteira · ~5 mil km</b></span>
+    <span>Pneus <b>235/55 R19</b></span>
+    <span>Rodas <b>originais</b></span>
+    <span>Medição <b>Physics Toolbox · ≈100 leituras/s</b></span>
+    <span>Atualizado <b>15/10/2026</b></span>
+  </div>
+</header>
+
+<section id="resumo">
+  <div class="side"><span class="label">Situação atual</span><h2>Resumo</h2></div>
+  <div class="main">
+    <div class="figs">
+      <div class="fig"><span class="label">Frequência do tremor</span><span class="n hot mono">≈ 9,3 Hz</span><p>Vibração vertical que aparece em todas as gravações deste carro em movimento.</p></div>
+      <div class="fig"><span class="label">Frente vs. trás</span><span class="n hot mono">3 a 5×</span><p>Mais forte no assoalho dianteiro, nos dois lados, do que no traseiro.</p></div>
+      <div class="fig"><span class="label">Vs. outro carro</span><span class="n hot mono">2 a 3×</span><p>Mesmo modelo, mesma pressão (30 psi), celular na mesma posição.</p></div>
+      <div class="fig"><span class="label">Após balanceamento</span><span class="n cool mono">−35%</span><p>Redução a 70–80 km/h. O pico continuou no mesmo lugar.</p></div>
+    </div>
+    <div class="status">
+      <span class="label">O que as medições indicam até aqui</span>
+      <p>O tremor se concentra no <b>eixo dianteiro</b>. Este carro tem frequências naturais em ≈ 9,3 e ≈ 10,4 Hz, mais baixas e menos amortecidas que a do outro carro (≈ 11,5 Hz). Entre 70 e 80 km/h a roda gira justamente nesse ritmo, cerca de 9,3 voltas por segundo com pneu 235/55 R19, e é ali que a quicada aparece. Pressão de 30, 33 ou 35 psi não muda a frequência.</p>
+    </div>
+    <ul class="clean">
+      <li><b>Suspeitos principais:</b> fixação do subchassi dianteiro, buchas ou bieletas da barra estabilizadora, amortecedores dianteiros e seus coxins.</li>
+      <li><b>Ainda possível:</b> os dois pneus ou rodas dianteiros contribuindo juntos. O balanceamento reduziu o tremor, então a roda tem alguma participação.</li>
+      <li><b>Menos provável:</b> um único canto com defeito. Os dois lados da frente deram valores parecidos.</li>
+    </ul>
+    <p style="font-size:.9rem;color:var(--muted)">Isto é leitura de medições feitas com celular, não um diagnóstico mecânico. Os valores servem para comparar situações entre si.</p>
+  </div>
+</section>
+
+<section id="linha-do-tempo">
+  <div class="side"><span class="label">06 a 09/10/2026</span><h2>Linha do tempo</h2></div>
+  <div class="main">
+    <ol class="tl">
+      <li><div class="when"><b>06/10</b>20:00</div><div><h3>Primeiras medições</h3><p>Celular na base de carregamento. O tremor vertical em ≈ 9,4 Hz aparece e quase dobra acima de 70 km/h, enquanto as outras frequências ficam iguais.</p><span class="rec">G01 · G02</span></div></li>
+      <li><div class="when"><b>07/10</b>07:54</div><div><h3>Mais três trajetos</h3><p>Mesmo padrão em dias e trechos diferentes: 1,7× a 2,7× mais tremor acima de 70 km/h. No trânsito urbano, até 55 km/h, nada fora do normal. Parado, só aparece o motor em marcha lenta (26,7 Hz). Primeiro relatório em PDF.</p><span class="rec">G03 · G04 · G05</span></div></li>
+      <li><div class="when"><b>07/10</b>09:03</div><div><h3>Novo balanceamento</h3><p>O tremor a 70–80 km/h cai cerca de 35%, mas o pico continua em ≈ 9,4 Hz. Primeira passagem acima de 100 km/h.</p><span class="rec">G06</span></div></li>
+      <li><div class="when"><b>07/10</b>09:18</div><div><h3>Pressão de 35 para 30 psi</h3><p>Suaviza acima de 85 km/h, mas não muda a faixa do problema nem a frequência do pico. Mais tarde, 33 psi dá o mesmo resultado.</p><span class="rec">G07 · G09</span></div></li>
+      <li><div class="when"><b>07/10</b>09:55</div><div><h3>Outro carro, mesmo modelo</h3><p>Mesma pressão e celular na mesma posição. O outro carro não tem o pico em 9,4 Hz: a frequência natural dele fica em ≈ 11,5 Hz e é bem mais fraca. Fora dessa região as curvas dos dois carros se sobrepõem. Relatório final de duas páginas.</p><span class="rec">G08</span></div></li>
+      <li><div class="when"><b>09/10</b>21:14</div><div><h3>Celular no assoalho, quatro posições</h3><p>Sem a base de carregamento, o pico continua, o que descarta o suporte. As duas posições da frente dão de 3 a 5 vezes mais vibração em 9–11 Hz do que as duas de trás.</p><span class="rec">G10 · G11 · G12 · G13</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="graficos">
+  <div class="side"><span class="label">8 imagens</span><h2>Gráficos</h2></div>
+  <div class="main">
+    <div class="gallery">
+      <figure><div class="plate"><img src="graficos/posicoes_assoalho.png" alt="Barras da altura do pico 9–11 Hz por posição do celular no assoalho" loading="lazy"></div><figcaption><b>Por posição no assoalho.</b> Frente direita e esquerda altas e parecidas; trás baixo dos dois lados. G10–G13.</figcaption></figure>
+      <figure><div class="plate"><img src="graficos/outro_carro_mesma_pressao.png" alt="Comparação do tremor entre este carro e o outro carro com 30 psi" loading="lazy"></div><figcaption><b>Outro carro, mesma pressão.</b> Este carro tem 2,2× a 3,1× mais tremor; o pico dele está em 9,4 Hz e o do outro em 11,5 Hz. G07 × G08.</figcaption></figure>
+      <figure><div class="plate"><img src="graficos/tres_situacoes.png" alt="Tremor antes, após balanceamento e com pressão menor" loading="lazy"></div><figcaption><b>Três situações.</b> Antes, após balanceamento e com 30 psi. G01–G07.</figcaption></figure>
+      <figure><div class="plate"><img src="graficos/antes_depois_balanceamento.png" alt="Tremor antes e depois do balanceamento por faixa de velocidade" loading="lazy"></div><figcaption><b>Antes e depois do balanceamento.</b> Queda de cerca de 35% a 70–80 km/h. G01–G05 × G06.</figcaption></figure>
+      <figure><div class="plate"><img src="graficos/outro_carro.png" alt="Este carro antes e depois do balanceamento contra o outro carro" loading="lazy"></div><figcaption><b>Primeira comparação com o outro carro.</b> Espectro a 70–80 km/h. G01–G06 × G08.</figcaption></figure>
+      <figure><div class="plate"><img src="graficos/assoalho_dianteiro_direito.png" alt="Espectro com o celular no assoalho dianteiro direito" loading="lazy"></div><figcaption><b>Assoalho dianteiro direito.</b> O pico continua sem a base. A legenda “giro da roda” no painel da direita foi uma leitura revista depois: o pico de ≈ 10,4 Hz é fixo (ver correções). G10.</figcaption></figure>
+      <figure class="wide"><div class="plate"><img src="graficos/relatorio_p1.png" alt="Página 1 do relatório de vibração" loading="lazy"></div><figcaption><b>Relatório, página 1.</b> As cinco gravações iniciais: intensidade por velocidade, mapa de frequências e uma gravação no tempo.</figcaption></figure>
+      <figure class="wide"><div class="plate"><img src="graficos/relatorio_p2.png" alt="Página 2 do relatório de vibração" loading="lazy"></div><figcaption><b>Relatório, página 2.</b> Comparações após intervenções e com o outro carro.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="posicoes">
+  <div class="side"><span class="label">Celular no assoalho</span><h2>De onde vem</h2></div>
+  <div class="main">
+    <p>Altura do pico em 9–11 Hz, em m/s². A medida relativa divide pelo nível da faixa 13–20 Hz, o que desconta diferenças de pista entre os trechos.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Posição</th><th class="num">60–70 km/h</th><th class="num">72–79 km/h</th><th class="num">Relativa a 72–79</th></tr></thead>
+      <tbody>
+        <tr><td>Dianteiro direito <span class="mono" style="color:var(--muted)">G10</span></td><td class="num hot">0,053</td><td class="num hot">0,099</td><td class="num hot">4,1×</td></tr>
+        <tr><td>Dianteiro esquerdo <span class="mono" style="color:var(--muted)">G11</span></td><td class="num hot">0,072*</td><td class="num hot">0,077</td><td class="num hot">4,1×</td></tr>
+        <tr><td>Traseiro direito <span class="mono" style="color:var(--muted)">G12</span></td><td class="num">0,015</td><td class="num">0,024</td><td class="num">2,1×</td></tr>
+        <tr><td>Traseiro esquerdo <span class="mono" style="color:var(--muted)">G13</span></td><td class="num">0,012</td><td class="num">0,019</td><td class="num">2,5×</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:.85rem;color:var(--muted)">* poucos dados nessa faixa (menos de ~10 s).</p>
+  </div>
+</section>
+
+<section id="proximo">
+  <div class="side"><span class="label">Pendente</span><h2>Próximo teste</h2></div>
+  <div class="main">
+    <p><b>Rodízio frente ↔ trás.</b> Passar as rodas dianteiras para trás e as traseiras para a frente, cada uma no mesmo lado, e repetir as gravações no assoalho dianteiro e traseiro, com uns 2 minutos a 70–76 km/h em cada posição.</p>
+    <ul class="clean">
+      <li>Se a vibração <b>for para trás</b> junto com as rodas: a causa está nos pneus ou rodas que estavam na frente.</li>
+      <li>Se <b>continuar na frente</b>: a causa é do carro (suspensão, amortecedores, subchassi ou fixações).</li>
+      <li>Mais conclusivo ainda: trocar as rodas dianteiras com as do outro carro e medir os dois.</li>
+      <li>Na oficina: teste Road Force e excentricidade com relógio comparador nas rodas montadas.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="correcoes">
+  <div class="side"><span class="label">Registro</span><h2>Correções feitas</h2></div>
+  <div class="main fix">
+    <div><h3>Velocidade da ressonância</h3><p>O primeiro relatório dizia que a roda atinge 9,4 Hz entre 73 e 80 km/h, com base num tamanho de pneu suposto. Foi retirado. Com a medida real (235/55 R19, ≈ 2,26 m por volta rodando), a conta dá ≈ 76 km/h.</p></div>
+    <div><h3>Pico de 10,3–10,4 Hz</h3><p>Na gravação G10 esse pico foi descrito como o giro da roda a 84 km/h. A G11 mostrou o mesmo pico a 75 km/h, quando a roda gira a 9,2 voltas por segundo. É uma segunda frequência natural fixa do carro, não a rotação da roda.</p></div>
+    <div><h3>Posição da gravação G11</h3><p>Foi registrada primeiro como dianteiro direito; o correto é dianteiro esquerdo. As conclusões de posição já usam o rótulo certo.</p></div>
+    <div><h3>Balanço da carroceria</h3><p>Uma versão do relatório dizia que o balanço lento (1–3 Hz) ficava estável. Ele sobe cerca de 40%, então o texto passou a comparar com as outras frequências.</p></div>
+  </div>
+</section>
+
+<section id="arquivos">
+  <div class="side"><span class="label">13 gravações + relatório</span><h2>Arquivos</h2></div>
+  <div class="main">
+    <div class="files-head">
+      <p>Dados brutos de cada gravação em CSV: tempo, força g (gFx, gFy, gFz), aceleração linear (ax, ay, az, em m/s²) e velocidade (m/s).</p>
+      <button class="dl" id="dl-pdf" data-file="relatorio_vibracao.pdf" data-name="relatorio_vibracao.pdf">Relatório PDF · 157 KB</button>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Grav.</th><th>Data</th><th>Condição</th><th class="num">Duração</th><th class="num">Vel. máx.</th><th>Arquivo</th></tr></thead>
+      <tbody><tr><td><span class="tag">G01</span></td><td class="mono" style="white-space:nowrap">06/10 20:00</td><td>Seu carro · base · antes<br><span style="color:var(--muted);font-size:.85rem">Primeira medição</span></td><td class="num">2:29</td><td class="num">79 km/h</td><td><button class="dl" data-file="dados/G01_2026-10-06_20h00.csv" data-name="G01_2026-10-06_20h00.csv">CSV · 1,1 MB</button></td></tr>
+<tr><td><span class="tag">G02</span></td><td class="mono" style="white-space:nowrap">06/10 20:04</td><td>Seu carro · base · antes<br><span style="color:var(--muted);font-size:.85rem">Repetição, mesmo trajeto</span></td><td class="num">6:01</td><td class="num">80 km/h</td><td><button class="dl" data-file="dados/G02_2026-10-06_20h04.csv" data-name="G02_2026-10-06_20h04.csv">CSV · 2,7 MB</button></td></tr>
+<tr><td><span class="tag">G03</span></td><td class="mono" style="white-space:nowrap">07/10 07:54</td><td>Seu carro · base · antes<br><span style="color:var(--muted);font-size:.85rem">Chega a 82 km/h</span></td><td class="num">3:11</td><td class="num">82 km/h</td><td><button class="dl" data-file="dados/G03_2026-10-07_07h54.csv" data-name="G03_2026-10-07_07h54.csv">CSV · 1,4 MB</button></td></tr>
+<tr><td><span class="tag">G04</span></td><td class="mono" style="white-space:nowrap">07/10 08:00</td><td>Seu carro · base · antes<br><span style="color:var(--muted);font-size:.85rem">Trânsito urbano, até 55 km/h (controle)</span></td><td class="num">8:33</td><td class="num">55 km/h</td><td><button class="dl" data-file="dados/G04_2026-10-07_08h00.csv" data-name="G04_2026-10-07_08h00.csv">CSV · 3,8 MB</button></td></tr>
+<tr><td><span class="tag">G05</span></td><td class="mono" style="white-space:nowrap">07/10 08:09</td><td>Seu carro · base · antes<br><span style="color:var(--muted);font-size:.85rem">Trecho limpo 55–83 km/h</span></td><td class="num">1:33</td><td class="num">83 km/h</td><td><button class="dl" data-file="dados/G05_2026-10-07_08h09.csv" data-name="G05_2026-10-07_08h09.csv">CSV · 704 KB</button></td></tr>
+<tr><td><span class="tag">G06</span></td><td class="mono" style="white-space:nowrap">07/10 09:03</td><td>Seu carro · base · após balanceamento<br><span style="color:var(--muted);font-size:.85rem">35 psi, até 111 km/h</span></td><td class="num">7:27</td><td class="num">111 km/h</td><td><button class="dl" data-file="dados/G06_2026-10-07_09h03.csv" data-name="G06_2026-10-07_09h03.csv">CSV · 3,3 MB</button></td></tr>
+<tr><td><span class="tag">G07</span></td><td class="mono" style="white-space:nowrap">07/10 09:18</td><td>Seu carro · base · 30 psi<br><span style="color:var(--muted);font-size:.85rem">Pressão reduzida de 35 para 30 psi</span></td><td class="num">13:38</td><td class="num">109 km/h</td><td><button class="dl" data-file="dados/G07_2026-10-07_09h18.csv" data-name="G07_2026-10-07_09h18.csv">CSV · 6,1 MB</button></td></tr>
+<tr><td><span class="tag other">G08</span></td><td class="mono" style="white-space:nowrap">07/10 09:55</td><td>Outro carro, mesmo modelo · base · 30 psi<br><span style="color:var(--muted);font-size:.85rem">Comparação, celular na mesma posição</span></td><td class="num">7:45</td><td class="num">99 km/h</td><td><button class="dl" data-file="dados/G08_2026-10-07_09h55.csv" data-name="G08_2026-10-07_09h55.csv">CSV · 3,4 MB</button></td></tr>
+<tr><td><span class="tag">G09</span></td><td class="mono" style="white-space:nowrap">07/10 10:31</td><td>Seu carro · base · 33 psi<br><span style="color:var(--muted);font-size:.85rem">Curta, pouco tempo acima de 70</span></td><td class="num">1:45</td><td class="num">78 km/h</td><td><button class="dl" data-file="dados/G09_2026-10-07_10h31.csv" data-name="G09_2026-10-07_10h31.csv">CSV · 797 KB</button></td></tr>
+<tr><td><span class="tag">G10</span></td><td class="mono" style="white-space:nowrap">09/10 21:14</td><td>Seu carro · assoalho dianteiro direito<br><span style="color:var(--muted);font-size:.85rem">Sem a base de carregamento</span></td><td class="num">3:41</td><td class="num">88 km/h</td><td><button class="dl" data-file="dados/G10_2026-10-09_21h14.csv" data-name="G10_2026-10-09_21h14.csv">CSV · 1,6 MB</button></td></tr>
+<tr><td><span class="tag">G11</span></td><td class="mono" style="white-space:nowrap">09/10 21:19</td><td>Seu carro · assoalho dianteiro esquerdo<br><span style="color:var(--muted);font-size:.85rem">2 min estáveis a 75 km/h</span></td><td class="num">3:57</td><td class="num">125 km/h</td><td><button class="dl" data-file="dados/G11_2026-10-09_21h19.csv" data-name="G11_2026-10-09_21h19.csv">CSV · 1,8 MB</button></td></tr>
+<tr><td><span class="tag">G12</span></td><td class="mono" style="white-space:nowrap">09/10 21:24</td><td>Seu carro · assoalho traseiro direito</td><td class="num">2:34</td><td class="num">82 km/h</td><td><button class="dl" data-file="dados/G12_2026-10-09_21h24.csv" data-name="G12_2026-10-09_21h24.csv">CSV · 1,1 MB</button></td></tr>
+<tr><td><span class="tag">G13</span></td><td class="mono" style="white-space:nowrap">09/10 21:27</td><td>Seu carro · assoalho traseiro esquerdo</td><td class="num">3:30</td><td class="num">87 km/h</td><td><button class="dl" data-file="dados/G13_2026-10-09_21h27.csv" data-name="G13_2026-10-09_21h27.csv">CSV · 1,6 MB</button></td></tr></tbody>
+    </table></div>
+    <p id="dlnote">As colunas de latitude, longitude e altitude foram removidas antes de publicar, para não expor trajetos e endereços. A velocidade, usada na análise, foi mantida.</p>
+  </div>
+</section>
+
+<section id="metodo">
+  <div class="side"><span class="label">Como foi feito</span><h2>Método</h2></div>
+  <div class="main">
+    <ul class="clean">
+      <li>App Physics Toolbox, modo Multi Record, gravando acelerômetro e GPS juntos. Acelerômetro a ≈ 95–97 leituras reais por segundo; GPS cerca de 1 vez por segundo.</li>
+      <li>A vibração vertical é a aceleração linear projetada na direção da gravidade medida em cada gravação, o que corrige a inclinação do celular.</li>
+      <li>Espectros em janelas de 4 ou 8 segundos, agrupados por faixa de velocidade. Trechos parados, abaixo de 10 km/h ou sem sinal de GPS foram descartados.</li>
+      <li>G01–G09: celular na base de carregamento. G10–G13: celular preso no assoalho. Valores do assoalho são mais altos em todas as frequências, por isso as comparações entre os dois métodos usam a forma das curvas.</li>
+      <li>Parado, os dois carros mostram 26,7 Hz, o motor em marcha lenta. O tremor de ≈ 9,3 Hz só existe com o carro rodando.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>Gravações e testes feitos pelo proprietário do veículo. Análise e gráficos gerados a partir dos arquivos desta página.</p>
+  <p class="mono">13 gravações · ≈ 66 min de dados · 06/10/2026 a 09/10/2026</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var buttons=[].slice.call(document.querySelectorAll('.dl[data-file]'));
+  var note=document.getElementById('dlnote');
+  var dlPromise=null;
+  function getDl(){
+    if(!dlPromise){dlPromise=(window.claude&&typeof window.claude.use==='function')?window.claude.use('downloads').catch(function(){return null;}):Promise.resolve(null);}
+    return dlPromise;
+  }
+  function setState(b,s,text){b.dataset.state=s;if(text)b.textContent=text;}
+  buttons.forEach(function(b){
+    var label=b.textContent;
+    b.addEventListener('click',function(ev){
+      ev.preventDefault();
+      if(b.dataset.state==='busy')return;
+      setState(b,'busy','Preparando…');
+      getDl().then(function(dl){
+        return fetch(b.dataset.file).then(function(r){if(!r.ok)throw new Error('http');return r.blob();}).then(function(blob){
+          if(dl){return dl.save({filename:b.dataset.name,data:blob}).then(function(){setState(b,'done','Baixado');setTimeout(function(){setState(b,'',label);},2500);});}
+          var url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=b.dataset.name;document.body.appendChild(a);a.click();a.remove();
+          setTimeout(function(){URL.revokeObjectURL(url);},4000);setState(b,'',label);
+        });
+      }).catch(function(e){
+        setState(b,'',label);
+        if(e&&e.code==='declined')return;
+        if(e&&e.code==='rate_limited'){b.textContent='Aguarde e tente de novo';setTimeout(function(){b.textContent=label;},2500);return;}
+        b.textContent='Não foi possível baixar aqui';setTimeout(function(){b.textContent=label;},3000);
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
